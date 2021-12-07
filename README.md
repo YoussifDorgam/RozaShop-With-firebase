@@ -1,4 +1,4 @@
-# shop_app_fire_base
+# Roza Shop
 
 A new Flutter project.
 
