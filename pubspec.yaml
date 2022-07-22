@@ -47,7 +47,7 @@ dependencies:
   shared_preferences: ^2.0.9
   location:
   google_maps_flutter:
-  device_preview: ^1.1.0
+
 
 
 

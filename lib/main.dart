@@ -1,5 +1,4 @@
 
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app_fire_base/Layout/home_layout.dart';
@@ -49,23 +48,15 @@ class MyApp extends StatelessWidget {
     ChangeNotifierProvider<CheckoutProvider>(
     create: (BuildContext context) => CheckoutProvider(),),
     ] ,
-      child: DevicePreview(
-        enabled: true,
-        builder: (BuildContext context) {
-          return MaterialApp(
-            useInheritedMediaQuery: true,
-            locale: DevicePreview.locale(context),
-            builder: DevicePreview.appBuilder,
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            home: Startapp,
-          );
-        },
-
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: Startapp,
       ),
     );
   }
 }
+
