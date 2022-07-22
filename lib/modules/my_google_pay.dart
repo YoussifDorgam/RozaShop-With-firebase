@@ -9,7 +9,7 @@ class MyGooglePay extends StatefulWidget {
 }
 
 class _MyGooglePayState extends State<MyGooglePay> {
-// In your Widget build() method
+
 
 // In your Stateless Widget class or State
   void onGooglePayResult(paymentResult) {

@@ -105,10 +105,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       BulidProfileItem(Icons.add_chart, 'About Us'),
                       BulidProfileItem(Icons.logout, 'Log Out', ontab: ()
                       {
+                        signOutWithGoogle().then((value) => {
                         cachHelper.removeData('uid').then((value) {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: (context) => const LoginScreen() ));
+                        })
                         });
                       }),
                     ],

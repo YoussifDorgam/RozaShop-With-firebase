@@ -51,7 +51,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                        Text(
                          userdata.userEmail ??
                         'Email',
-                        style: TextStyle(color: Colors.black ,fontSize: 13),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: const TextStyle(color: Colors.black ,fontSize: 12),
                       ),
                     ],
                   ),

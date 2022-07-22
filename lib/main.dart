@@ -1,4 +1,5 @@
 
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app_fire_base/Layout/home_layout.dart';
@@ -22,10 +23,10 @@ void main() async {
   uid = cachHelper.getData('uid');
   if( uid != null  )
   {
-    widget = HomeLayoute() ;
+    widget = const HomeLayoute() ;
   }else
   {
-    widget = LoginScreen() ;
+    widget = const LoginScreen() ;
   }
   runApp( MyApp(Startapp: widget,));
 }
@@ -48,146 +49,23 @@ class MyApp extends StatelessWidget {
     ChangeNotifierProvider<CheckoutProvider>(
     create: (BuildContext context) => CheckoutProvider(),),
     ] ,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.blue,
-        ),
-        home: Startapp,
+      child: DevicePreview(
+        enabled: true,
+        builder: (BuildContext context) {
+          return MaterialApp(
+            useInheritedMediaQuery: true,
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: Startapp,
+          );
+        },
+
       ),
     );
   }
 }
-
-// Copyright 2013 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-// ignore_for_file: public_member_api_docs
-
-// import 'dart:async';
-// import 'dart:convert' show json;
-// import 'package:flutter/material.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
-//
-// GoogleSignIn _googleSignIn = GoogleSignIn(
-//   // Optional clientId
-//   // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
-//   scopes: <String>[
-//     'email',
-//     'https://www.googleapis.com/auth/contacts.readonly',
-//   ],
-// );
-//
-// void main() {
-//   runApp(
-//     MaterialApp(
-//       title: 'Google Sign In',
-//       home: SignInDemo(),
-//     ),
-//   );
-// }
-//
-// class SignInDemo extends StatefulWidget {
-//   @override
-//   State createState() => SignInDemoState();
-// }
-//
-// class SignInDemoState extends State<SignInDemo> {
-//   GoogleSignInAccount? _currentUser;
-//   String _contactText = '';
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
-//       setState(() {
-//         _currentUser = account;
-//       });
-//       if (_currentUser != null) {
-//         _handleGetContact(_currentUser!);
-//       }
-//     });
-//     _googleSignIn.signInSilently();
-//   }
-//
-//   Future<void> _handleGetContact(GoogleSignInAccount user) async {
-//     setState(() {
-//       _contactText = "Loading contact info...";
-//     });
-//
-//     setState(() {
-//
-//     });
-//   }
-//   Future<void> _handleSignIn() async {
-//     try {
-//       await _googleSignIn.signIn();
-//     } catch (error) {
-//       print(error);
-//     }
-//   }
-//
-//   Future<void> _handleSignOut() => _googleSignIn.disconnect();
-//
-//   Widget _buildBody() {
-//     GoogleSignInAccount? user = _currentUser;
-//     if (user != null) {
-//       return Column(
-//         mainAxisAlignment: MainAxisAlignment.spaceAround,
-//         children: <Widget>[
-//           ListTile(
-//             leading: GoogleUserCircleAvatar(
-//               identity: user,
-//             ),
-//             title: Text(user.displayName ?? ''),
-//             subtitle: Text(user.email),
-//           ),
-//           const Text("Signed in successfully."),
-//           Text(_contactText),
-//           ElevatedButton(
-//             child: const Text('SIGN OUT'),
-//             onPressed: _handleSignOut,
-//           ),
-//           ElevatedButton(
-//             child: const Text('REFRESH'),
-//             onPressed: () => _handleGetContact(user),
-//           ),
-//         ],
-//       );
-//     } else {
-//       return Column(
-//         mainAxisAlignment: MainAxisAlignment.spaceAround,
-//         children: <Widget>[
-//           const Text("You are not currently signed in."),
-//           ElevatedButton(
-//             child: const Text('SIGN IN'),
-//             onPressed: _handleSignIn,
-//           ),
-//         ],
-//       );
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(
-//           title: const Text('Google Sign In'),
-//         ),
-//         body: ConstrainedBox(
-//           constraints: const BoxConstraints.expand(),
-//           child: _buildBody(),
-//         ));
-//   }
-// }

@@ -46,17 +46,19 @@ class _LoginScreenState extends State<LoginScreen> {
       // Authenticate with firebase
       return user;
     }catch(e){
-      // Fluttertoast.showToast(
-      //     msg: "///////////////////////////////////${e.toString()}");
-      print("///////////////////////////////////${e}");
+      Fluttertoast.showToast(
+          msg: e.toString());
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
     userProvider = Provider.of<UserProvider>(context);
     UserProvider userProvider1 = Provider.of(context);
     userProvider1.getUserData();
+
+
     return Scaffold(
         body: Container(
       decoration: const BoxDecoration(
@@ -102,13 +104,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       Buttons.Google,
                       text: "Sign in with Google",
                       onPressed: () async  {
-                       await  signInWithGoogle().then((value) {
-                          cachHelper.SaveData(key: 'uid', value: userProvider1.currentData!.userUid)
-                              .then((value) {
-                            NavegatandFinish(context, const HomeLayoute());
-                            print('data saved successfully');
-                          });
-                        });
+                        await signInWithGoogle().then((value)
+                            {
+                                 cachHelper.SaveData(key: 'uid', value: userProvider1.currentData!.userUid)
+                                     .then((value) {
+                                   NavegatandFinish(context, const HomeLayoute());;
+                                 });
+                            }
+
+                        );
                       },
                     ),
                   ],

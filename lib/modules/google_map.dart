@@ -13,7 +13,7 @@ class GoogleMapScreen extends StatefulWidget {
 }
 
 class _GoogleMapScreenState extends State<GoogleMapScreen> {
-//  LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
+//LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
   LatLng _initialcameraposition = LatLng(24.8918682, 30.9758651);
   GoogleMapController? controller;
   Location _location = Location();

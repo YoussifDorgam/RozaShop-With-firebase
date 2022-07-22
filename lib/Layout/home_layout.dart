@@ -204,8 +204,6 @@ class _HomeLayouteState extends State<HomeLayoute> {
       ),
     );
   }
-
-
 }
 
 

@@ -34,6 +34,7 @@ class ReviewCartProvider with ChangeNotifier {
     );
   }
   List<ReviewCartModel> reviewCartDataList = [];
+
   void getReviewCartData() async {
     List<ReviewCartModel> newList = [];
     QuerySnapshot reviewCartValue = await FirebaseFirestore.instance
